@@ -17,7 +17,7 @@ export const Login = ({ setUser, toast }) => {
     resolver: zodResolver(loginSchema),
   });
 
-  const [loading, setLoading] = useState(false); //Para uso futuro.
+  const [loading, setLoading] = useState(true); //Para uso futuro.
   // console.log(loading);
 
   const navigate = useNavigate();
@@ -38,7 +38,6 @@ export const Login = ({ setUser, toast }) => {
             JSON.stringify(response.data.user.id)
           );
         });
-      setLoading(true);
       navigate("/home");
       return responseApi;
     } catch (error) {
