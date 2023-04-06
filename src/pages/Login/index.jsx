@@ -1,15 +1,14 @@
-import { Input } from "../../components/Input";
 import { useForm } from "react-hook-form";
-import { loginSchema } from "./loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { api } from "../../services/api";
+import { loginSchema } from "./loginSchema";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { StyledMainContainer } from "./style";
+import { api } from "../../services/api";
 import { Header } from "../../../src/components/Header";
+import { StyledMainContainer } from "./style";
+import { FormLogin } from "../../components/FormLogin";
 
-export const Login = ({ setUser }) => {
+export const Login = ({ setUser, toast }) => {
   const {
     register,
     handleSubmit,
@@ -18,7 +17,9 @@ export const Login = ({ setUser }) => {
     resolver: zodResolver(loginSchema),
   });
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); //Para uso futuro.
+  // console.log(loading);
+
   const navigate = useNavigate();
 
   const loginFormSubmit = (loginFormData) => {
@@ -41,7 +42,9 @@ export const Login = ({ setUser }) => {
       navigate("/home");
       return responseApi;
     } catch (error) {
-      console.log(error);
+      toast.error("Ops! Algo deu errado", {
+        autoClose: 2000,
+      });
     } finally {
       setLoading(false);
     }
@@ -51,26 +54,13 @@ export const Login = ({ setUser }) => {
     <>
       <Header />
       <StyledMainContainer>
-        <form onSubmit={handleSubmit(loginFormSubmit)}>
-          <h3>Login</h3>
-          <Input
-            type="email"
-            label="Email"
-            placeholder="Digite aqui seu email"
-            {...register("email")}
-          />
-          {errors.email ? <p>{errors.email.message}</p> : null}
-          <Input
-            type="password"
-            label="Senha"
-            placeholder="Digite aqui sua senha"
-            {...register("password")}
-          />
-          {errors.password ? <p>{errors.password.message}</p> : null}
-          <button type="submit">Entrar</button>
-          <p>Ainda não possui uma conta?</p>
-          <Link to="/register">Cadastre-se</Link>
-        </form>
+        <FormLogin
+          toast={toast}
+          register={register}
+          handleSubmit={handleSubmit}
+          loginFormSubmit={loginFormSubmit}
+          errors={errors}
+        />
       </StyledMainContainer>
     </>
   );

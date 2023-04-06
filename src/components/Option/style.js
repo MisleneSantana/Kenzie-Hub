@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledOption = styled.option`
-  height: 2.4375rem;
+  height: 2.3988rem;
   background-color: var(--grey-2);
   width: 16.6875rem;
   color: var(--grey-1);

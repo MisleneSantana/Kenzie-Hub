@@ -45,23 +45,6 @@ body {
     --card-height: 3.0456rem;
 }
 
-::-webkit-scrollbar {
-    height: 4px;
-    width: 4px;
-}
-
-::-webkit-scrollbar-track {
-    // background: var();
-}
-
-::-webkit-scrollbar-thumb {
-    background: var();
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var();
-}
-
 input{
     height: 3rem;
     background-color: var(--grey-2);
@@ -77,5 +60,9 @@ input{
       line-height: 1.625rem;
       font-weight:400;
     }
+}
+
+button, a{
+    cursor: pointer;
 }
 `;

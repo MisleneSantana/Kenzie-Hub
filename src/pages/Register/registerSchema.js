@@ -2,15 +2,10 @@ import { z } from "zod";
 
 export const registerSchema = z
   .object({
-    name: z
-      .string()
-      .min(
-        3,
-        "O nome é obrigatório e precisa conter o mínimo de 3 caracteres."
-      ),
+    name: z.string().nonempty("O nome é obrigatório"),
     email: z
       .string()
-      .min(1, "O e-mail é obrigatório")
+      .nonempty("O e-mail é obrigatório")
       .email("Por favor, forneça um e-mail válido"),
     password: z
       .string()
@@ -19,20 +14,18 @@ export const registerSchema = z
       .regex(/(?=.*?[a-z])/, "Necessário ao menos uma letra minúscula ")
       .regex(/(?=.*?[0-9])/, "Necessário conter ao menos um número")
       .regex(
-        /(?=.*?[}{,.^?~=+\-_\/*\-+.\|!])/,
+        /(?=.*?[}{,.^?~=+\-_\/*\-+.\|!@])/,
         "Necessário conter ao menos um caracter especial"
       ),
-    confirm: z.string().min(1, "Por favor, confirme sua senha"),
+    confirm: z.string().nonempty("Por favor, confirme sua senha"),
     bio: z
       .string()
-      .min(1, "Escreva sua bio")
+      .nonempty("Escreva sua bio")
       .max(15, "A descrição deve ser breve, com no máximo 15 caracteres"),
-    contact: z
-      .string()
-      .min(9, "É necessário fornecer ao menos um número de contato"),
+    contact: z.string().nonempty("Forneça um número de contato"),
     course_module: z
       .string()
-      .min(1, "Selecione ao menos uma opção dentre as opções "),
+      .nonempty("Selecione ao menos uma opção dentre as opções "),
   })
   .refine(({ password, confirm }) => confirm === password, {
     message:

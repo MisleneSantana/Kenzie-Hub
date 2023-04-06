@@ -1,10 +1,10 @@
 import { forwardRef } from "react";
-import {StyledOption} from "./style";
+import { StyledOption } from "./style";
 
-export const Option = forwardRef(({ value, innerText, ...rest }, ref) => {
+export const Option = forwardRef(({ value, text, ...rest }, ref) => {
   return (
     <StyledOption value={value} {...rest} ref={ref}>
-      {innerText}
+      {text}
     </StyledOption>
   );
 });
