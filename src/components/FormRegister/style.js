@@ -8,7 +8,7 @@ export const StyledRegisterForm = styled.form`
   align-items: center;
   gap: 0.5rem;
   border-radius: 0.2006rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 
   h3 {
     font-size: 0.8994rem;

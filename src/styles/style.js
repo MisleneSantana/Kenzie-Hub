@@ -9,5 +9,6 @@ export const StyledPageContainer = styled.div`
   justify-content: center;
   margin: 0 auto;
   gap: 1rem;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;

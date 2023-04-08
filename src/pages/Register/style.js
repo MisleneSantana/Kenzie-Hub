@@ -1,10 +1,23 @@
 import styled from "styled-components";
 
+export const StyledRegisterPageContainer = styled.div`
+  width: 99vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  gap: 1rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+`;
+
 export const StyledHeaderRegisterPageContainer = styled.div`
   width: 99vw;
   height: auto;
   display: flex;
   justify-content: center;
+  margin-top: 1.5rem;
 
   header {
     width: 18.5rem;

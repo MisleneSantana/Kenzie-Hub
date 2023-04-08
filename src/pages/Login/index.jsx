@@ -17,7 +17,7 @@ export const Login = ({ setUser, toast }) => {
     resolver: zodResolver(loginSchema),
   });
 
-  const [loading, setLoading] = useState(true); //Para uso futuro.
+  const [loading, setLoading] = useState(false); //Para uso futuro.
   // console.log(loading);
 
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ export const Login = ({ setUser, toast }) => {
         autoClose: 2000,
       });
     } finally {
-      setLoading(false);
+      setLoading(true);
     }
   };
 

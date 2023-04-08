@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../../services/api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {StyledRegisterPageContainer} from "./style";
 import { StyledHeaderRegisterPageContainer } from "./style";
 import { Header } from "../../../src/components/Header";
 import { Link } from "react-router-dom";
@@ -55,19 +56,21 @@ export const Register = ({ toast }) => {
 
   return (
     <>
-      <StyledHeaderRegisterPageContainer>
-        <Header>
-          <Link to="/">Voltar</Link>
-        </Header>
-      </StyledHeaderRegisterPageContainer>
-      <StyledRegisterMainContainer>
-        <FormRegister
-          register={register}
-          handleSubmit={handleSubmit}
-          registerFormSubmit={registerFormSubmit}
-          errors={errors}
-        />
-      </StyledRegisterMainContainer>
+      <StyledRegisterPageContainer>
+        <StyledHeaderRegisterPageContainer>
+          <Header>
+            <Link to="/">Voltar</Link>
+          </Header>
+        </StyledHeaderRegisterPageContainer>
+        <StyledRegisterMainContainer>
+          <FormRegister
+            register={register}
+            handleSubmit={handleSubmit}
+            registerFormSubmit={registerFormSubmit}
+            errors={errors}
+          />
+        </StyledRegisterMainContainer>
+      </StyledRegisterPageContainer>
     </>
   );
 };
