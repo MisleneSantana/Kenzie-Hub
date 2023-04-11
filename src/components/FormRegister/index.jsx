@@ -17,6 +17,7 @@ export const FormRegister = ({
         label="Nome"
         placeholder="Digite aqui seu nome"
         id="name"
+        name="name"
         error={errors.name?.message}
         {...register("name")}
       />
@@ -25,6 +26,7 @@ export const FormRegister = ({
         label="Email"
         placeholder="Digite aqui seu email"
         id="email"
+        name="email"
         error={errors.email?.message}
         {...register("email")}
       />
@@ -33,6 +35,7 @@ export const FormRegister = ({
         label="Senha"
         placeholder="Digite aqui sua senha"
         id="password"
+        name="password"
         error={errors.password?.message}
         {...register("password")}
       />
@@ -41,6 +44,7 @@ export const FormRegister = ({
         label="Confirmar senha"
         placeholder="Digite novamente sua senha"
         id="confirm"
+        name="confirm"
         error={errors.confirm?.message}
         {...register("confirm")}
       />
@@ -49,6 +53,7 @@ export const FormRegister = ({
         label="Bio"
         placeholder="Fale sobre você"
         id="bio"
+        name="bio"
         error={errors.bio?.message}
         {...register("bio")}
       />
@@ -57,13 +62,14 @@ export const FormRegister = ({
         label="Contato"
         placeholder="Opção de contato"
         id="contact"
+        name="contact"
         error={errors.contact?.message}
         {...register("contact")}
       />
       <span>
         <label htmlFor="module">Selecionar Módulo</label>
         <select
-          name="module"
+          name="course_module"
           label="Selecionar módulo"
           id="course_module"
           error={errors.course_module?.message}

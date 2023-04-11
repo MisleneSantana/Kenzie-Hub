@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { StyledInputContainer } from "./style";
 
 export const Input = forwardRef(
-  ({ label, placeholder, id, error, ...rest }, ref) => {
+  ({ label, placeholder, id, name, error, ...rest }, ref) => {
     return (
       <>
         <StyledInputContainer>
@@ -11,6 +11,7 @@ export const Input = forwardRef(
             label={label}
             placeholder={placeholder}
             id={id}
+            name={name}
             {...rest}
             ref={ref}
           />

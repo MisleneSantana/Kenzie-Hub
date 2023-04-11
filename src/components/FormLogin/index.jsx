@@ -1,19 +1,12 @@
+import { useContext } from "react";
+import { FormLoginContext } from "../../providers/FormLoginProvider";
 import { StyledLoginForm } from "./style";
 import { Input } from "../Input/index";
 import { Link } from "react-router-dom";
 
-export const FormLogin = ({
-  toast,
-  register,
-  handleSubmit,
-  loginFormSubmit,
-  errors,
-}) => {
-  const toastError = (message) => {
-    toast.error(`${message}`, {
-      autoClose: 2000,
-    });
-  };
+export const FormLogin = () => {
+  const { register, handleSubmit, loginFormSubmit, errors } =
+    useContext(FormLoginContext);
 
   return (
     <StyledLoginForm onSubmit={handleSubmit(loginFormSubmit)}>
@@ -21,17 +14,21 @@ export const FormLogin = ({
       <Input
         type="email"
         label="Email"
+        name="email"
+        id="email"
         placeholder="Digite aqui seu email"
+        error={errors.email?.message}
         {...register("email")}
       />
-      {errors.email ? toastError(`${errors.email.message}`) : null}
       <Input
         type="password"
         label="Senha"
+        name="password"
+        id="password"
         placeholder="Digite aqui sua senha"
+        error={errors.password?.message}
         {...register("password")}
       />
-      {errors.password ? toastError(`${errors.password.message}`) : null}
       <button type="submit">Entrar</button>
       <p>Ainda não possui uma conta?</p>
       <Link to="/register">Cadastre-se</Link>
