@@ -1,13 +1,13 @@
+import { useContext } from "react";
+import { FormRegisterContext } from "../../providers/FormRegisterProvider";
+import { StyledRegisterForm } from "./style";
 import { Input } from "../Input";
 import { Option } from "../Option";
-import { StyledRegisterForm } from "./style";
 
-export const FormRegister = ({
-  register,
-  handleSubmit,
-  registerFormSubmit,
-  errors,
-}) => {
+export const FormRegister = () => {
+  const { register, handleSubmit, registerFormSubmit, errors } =
+    useContext(FormRegisterContext);
+
   return (
     <StyledRegisterForm onSubmit={handleSubmit(registerFormSubmit)}>
       <h3>Crie sua conta</h3>
