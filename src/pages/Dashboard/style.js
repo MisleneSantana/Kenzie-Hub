@@ -82,6 +82,7 @@ export const StyledMainDashboardContainer = styled.main`
   section:nth-child(2) {
     margin-top: 1rem;
     border-bottom: none;
+    height: auto;
 
     p:nth-child(1) {
       font-size: var(--text-16);

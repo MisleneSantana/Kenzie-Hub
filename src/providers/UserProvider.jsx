@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
@@ -7,15 +7,14 @@ import { toast } from "react-toastify";
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
+  // *States*
   const [user, setUser] = useState(null);
-
-  const [loading, setLoading] = useState(false); //Para uso futuro.
-  // console.log(loading);
-
-  const [userRegister, setUserRegister] = useState("");
-  // console.log(responseApi);
+  const [loading, setLoading] = useState(true);
+  const [userRegister, setUserRegister] = useState(""); //Uso futuro.
+  const [updateTech, setUpdateTech] = useState([]);
 
   const navigate = useNavigate();
+  console.log(updateTech);
 
   // *Toasts*:
   const toastSuccess = () => {
@@ -30,6 +29,30 @@ export const UserProvider = ({ children }) => {
     });
   };
 
+  // *Logged in user profile request (token)* - Auto-Login:
+  useEffect(() => {
+    const userToken = JSON.parse(localStorage.getItem("@TOKEN"));
+
+    if (userToken) {
+      const loggedInUserProfile = async () => {
+        try {
+          api.defaults.headers.common.Authorization = `Bearer ${userToken}`;
+
+          const response = await api.get("/profile");
+
+          setUser(response.data);
+          // setUpdateTech(response.data.techs);
+        } catch (error) {
+          localStorage.clear();
+          toastError();
+        } finally {
+          setLoading(false);
+        }
+      };
+      loggedInUserProfile();
+    }
+  }, []);
+
   // *Login*:
   const login = async (loginFormData) => {
     try {
@@ -41,16 +64,16 @@ export const UserProvider = ({ children }) => {
             "@USERID",
             JSON.stringify(response.data.user.id)
           );
+
+          api.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
+
           setUser(response.data.user);
+          navigate("/home");
         });
-      navigate("/home");
+
       return responseApi;
     } catch (error) {
-      toast.error("Ops! Algo deu errado", {
-        autoClose: 2000,
-      });
-    } finally {
-      setLoading(true);
+      toastError();
     }
   };
 
@@ -73,7 +96,19 @@ export const UserProvider = ({ children }) => {
   // *Return Provider*:
   return (
     <UserContext.Provider
-      value={{ user, setUser, login, postRegisterUser, toast }}
+      value={{
+        login,
+        user,
+        loading,
+        setUser,
+        setLoading,
+        updateTech,
+        setUpdateTech,
+        postRegisterUser,
+        toast,
+        toastSuccess,
+        toastError,
+      }}
     >
       {children}
     </UserContext.Provider>
