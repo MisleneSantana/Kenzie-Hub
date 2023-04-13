@@ -35,8 +35,9 @@ export const TechProvider = ({ children }) => {
       const responseApi = await api
         .post("/users/techs", formData)
         .then((response) => {
-          toastSuccessCreate();
           setTechList([...techList, response.data]);
+
+          toastSuccessCreate();
         });
       return responseApi;
     } catch (error) {
@@ -56,7 +57,7 @@ export const TechProvider = ({ children }) => {
             (tech) => tech.id !== techId
           );
           setTechList([...updateCurrentTech, response.data]);
-          // console.log(response.data);
+
           toastSuccessUpdate();
         });
 

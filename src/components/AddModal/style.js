@@ -3,9 +3,14 @@ import styled from "styled-components";
 export const StyledInputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
   background-color:var(--grey-3);
   border-radius:0.2006rem;
+  position: fixed;
+  top: 150px;
+  margin: auto;
+  z-index:0;
+
   
   span {
     display: flex;
@@ -25,6 +30,7 @@ export const StyledInputContainer = styled.div`
     }
 
     button{
+      display: flex;
         background-color:transparent;
         border: none;
         margin-right: 1rem;
@@ -36,13 +42,13 @@ export const StyledInputContainer = styled.div`
     display:flex;
     flex-direction:column;
     align-items: center;
-    gap: 1rem;
     margin-bottom: 1.5rem;
     width: 100%;
 
     div>input{
         color: var(--grey-1);
         height:2.4063rem; 
+        margin-bottom:1rem;
 
         :focus{
           color: var(--grey-0);
@@ -64,6 +70,7 @@ export const StyledInputContainer = styled.div`
         border-radius: var(--border-radius);
         color: var(--grey-1);
         padding: 0px 1rem;
+        margin: 0.5rem 0 1.5rem 0;
 
         :focus{
           border: 0.0762rem solid var(--grey-0);
@@ -78,12 +85,19 @@ export const StyledInputContainer = styled.div`
         width: 90%;
         height:2.4063rem;
         background-color: var(--color-primary);
-        border: 2px solid var(--color-primary)
+        border: 2px solid var(--color-primary);
         border-radius: var(--border-radius);
         color: var(--white);
         font-size:0.8125rem;
         line-height:1.3125rem;
         font-weight:500;
     }
+  }
+
+  @media (min-width: 768px){
+    width:23.0625rem;
+    inset: 0;
+    height: 290px;
+    z-index:0;
   }
 `;
