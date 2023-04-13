@@ -1,7 +1,9 @@
+import { StyledLoading } from "./style";
+
 export const Loading = () => {
   return (
-    <div>
+    <StyledLoading>
       <h1>Carregando a página...</h1>
-    </div>
+    </StyledLoading>
   );
 };

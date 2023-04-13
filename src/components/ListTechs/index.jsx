@@ -1,23 +1,33 @@
 import { CardTech } from "./CardTech";
-import { useContext } from "react";
-import { UserContext } from "../../providers/UserProvider";
+import { useContext, useState } from "react";
+// import { UserContext } from "../../providers/UserProvider";
 import ButtonModal from "../../assets/img/Modal.svg";
+import { AddModal } from "../AddModal";
 import {
   StyledContainerSectionTechs,
   StyledContainerTitle,
   StyledContainerTechList,
 } from "./style";
+import { TechContext } from "../../providers/TechProvider";
 
 export const ListTechs = () => {
-  const { user } = useContext(UserContext);
+  const { techList } = useContext(TechContext);
+
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
   return (
     <StyledContainerSectionTechs>
       <StyledContainerTitle>
         <h3>Tecnologias</h3>
-        <img src={ButtonModal} alt="button-plus"></img>
+        <button onClick={() => setIsAddModalOpen(true)}>
+          <img src={ButtonModal} alt="button-plus" />
+        </button>
       </StyledContainerTitle>
+      {isAddModalOpen ? (
+        <AddModal setIsAddModalOpen={setIsAddModalOpen} />
+      ) : null}
       <StyledContainerTechList>
-        {user.techs.map((tech) => (
+        {techList.map((tech) => (
           <CardTech key={tech.id} tech={tech} />
         ))}
       </StyledContainerTechList>

@@ -6,8 +6,9 @@ import { TechContext } from "../../providers/TechProvider";
 import { Input } from "../Input";
 import { Option } from "../Option";
 import buttonClose from "../../assets/img/X.svg";
+import { StyledInputContainer } from "./style";
 
-export const AddModal = () => {
+export const AddModal = ({ setIsAddModalOpen }) => {
   const {
     register,
     handleSubmit,
@@ -16,19 +17,17 @@ export const AddModal = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const { createNewTechnology } = useContext(TechContext);
-
-  const modalFormSubmit = (formData) => {
-    createNewTechnology(formData);
-  };
+  const { handleNewTechnology } = useContext(TechContext);
 
   return (
-    <div role="dialog">
-      <form onSubmit={handleSubmit(modalFormSubmit)}>
-        <div>
-          <h3>Cadastrar Tecnologia</h3>
-          <img src={buttonClose} alt="X"></img>
-        </div>
+    <StyledInputContainer role="dialog">
+      <span>
+        <h3>Cadastrar Tecnologia</h3>
+        <button onClick={() => setIsAddModalOpen(false)}>
+          <img src={buttonClose} alt="X" />
+        </button>
+      </span>
+      <form onSubmit={handleSubmit(handleNewTechnology)}>
         <Input
           type="text"
           label="Nome"
@@ -38,6 +37,7 @@ export const AddModal = () => {
           error={errors.title?.message}
           {...register("title")}
         />
+        <label htmlFor="status">Selecionar status</label>
         <select
           name="status"
           label="Selecionar status"
@@ -51,6 +51,6 @@ export const AddModal = () => {
         </select>
         <button type="submit">Cadastrar Tecnologia</button>
       </form>
-    </div>
+    </StyledInputContainer>
   );
 };

@@ -19,10 +19,17 @@ export const StyledContainerTitle = styled.span`
     line-height: 1.125rem;
   }
 
-  img {
+  button {
+    background-color: transparent;
+    border: none;
     height: 2rem;
     width: 2rem;
-    object-fit: cover;
+
+    img {
+      height: 2rem;
+      width: 2rem;
+      object-fit: cover;
+    }
   }
 `;
 

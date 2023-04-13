@@ -1,42 +1,42 @@
 import { createContext, useContext } from "react";
 import { UserContext } from "./UserProvider";
 import { api } from "../services/api";
+import { useState } from "react";
 
 export const TechContext = createContext({});
 
 export const TechProvider = ({ children }) => {
-  const {
-    // user,
-    setUser,
-    updateTech,
-    // setUpdateTech,
-    setLoading,
-    toast,
-    toastError,
-  } = useContext(UserContext);
+  const { user, setLoading, toast, toastError } = useContext(UserContext);
 
-  const toastSuccess = () => {
+  const [techList, setTechList] = useState(user.techs);
+  // console.log(techList);
+
+  const toastSuccessCreate = () => {
     toast.success("Tecnologia criada", {
       autoClose: 2000,
     });
   };
 
-  console.log(updateTech);
+  const toastSuccessUpdate = () => {
+    toast.success("Tecnologia alterada", {
+      autoClose: 2000,
+    });
+  };
 
-  // const addNewToTechsList = (currentTech) => {
-  //   const newTechsList = [...user, currentTech];
-  //   if (!user.some((user) => user.id === currentTech.id)) {
-  //     setUser(newTechsList);
-  //   }
-  // };
+  const toastSuccessDelete = () => {
+    toast.success("Tecnologia deletada", {
+      autoClose: 2000,
+    });
+  };
 
-  const createNewTechnology = async (formData) => {
+  // Create tech:
+  const handleNewTechnology = async (formData) => {
     try {
       const responseApi = await api
         .post("/users/techs", formData)
         .then((response) => {
-          setUser(response.data);
-          toastSuccess();
+          toastSuccessCreate();
+          setTechList([...techList, response.data]);
         });
       return responseApi;
     } catch (error) {
@@ -46,8 +46,55 @@ export const TechProvider = ({ children }) => {
     }
   };
 
+  // Update tech:
+  const handleUpdateTech = async (techId, formData) => {
+    try {
+      const responseApi = await api
+        .put(`/users/techs/${techId}`, formData)
+        .then((response) => {
+          const updateCurrentTech = techList.filter(
+            (tech) => tech.id !== techId
+          );
+          setTechList([...updateCurrentTech, response.data]);
+          // console.log(response.data);
+          toastSuccessUpdate();
+        });
+
+      return responseApi;
+    } catch (error) {
+      toastError();
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Delete tech:
+  const handleDeleteTech = async (techId) => {
+    try {
+      const response = await api.delete(`/users/techs/${techId}`);
+
+      const removeCurrentTech = techList.filter((tech) => tech.id !== techId);
+      setTechList(removeCurrentTech);
+      // console.log(response);
+      toastSuccessDelete();
+
+      return response;
+    } catch (error) {
+      // toastError();
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <TechContext.Provider value={{ createNewTechnology }}>
+    <TechContext.Provider
+      value={{
+        techList,
+        handleNewTechnology,
+        handleUpdateTech,
+        handleDeleteTech,
+      }}
+    >
       {children}
     </TechContext.Provider>
   );

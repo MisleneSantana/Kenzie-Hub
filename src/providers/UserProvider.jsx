@@ -11,10 +11,8 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userRegister, setUserRegister] = useState(""); //Uso futuro.
-  const [updateTech, setUpdateTech] = useState([]);
 
   const navigate = useNavigate();
-  console.log(updateTech);
 
   // *Toasts*:
   const toastSuccess = () => {
@@ -31,26 +29,27 @@ export const UserProvider = ({ children }) => {
 
   // *Logged in user profile request (token)* - Auto-Login:
   useEffect(() => {
-    const userToken = JSON.parse(localStorage.getItem("@TOKEN"));
+    const loggedInUserProfile = async () => {
+      try {
+        const userToken = localStorage.getItem("@TOKEN");
 
-    if (userToken) {
-      const loggedInUserProfile = async () => {
-        try {
-          api.defaults.headers.common.Authorization = `Bearer ${userToken}`;
-
-          const response = await api.get("/profile");
-
-          setUser(response.data);
-          // setUpdateTech(response.data.techs);
-        } catch (error) {
-          localStorage.clear();
-          toastError();
-        } finally {
-          setLoading(false);
+        if (!userToken) {
+          return;
         }
-      };
-      loggedInUserProfile();
-    }
+        api.defaults.headers.common.Authorization = `Bearer ${userToken}`;
+
+        const response = await api.get("/profile");
+
+        setUser(response.data);
+      } catch (error) {
+        localStorage.clear();
+        toastError();
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loggedInUserProfile();
   }, []);
 
   // *Login*:
@@ -59,21 +58,22 @@ export const UserProvider = ({ children }) => {
       const responseApi = await api
         .post("/sessions", loginFormData)
         .then((response) => {
-          localStorage.setItem("@TOKEN", JSON.stringify(response.data.token));
-          localStorage.setItem(
-            "@USERID",
-            JSON.stringify(response.data.user.id)
-          );
+          const { user: userResponse, token } = response.data;
 
-          api.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
+          api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-          setUser(response.data.user);
+          localStorage.setItem("@TOKEN", token);
+          localStorage.setItem("@USERID", JSON.stringify(userResponse.id));
+
+          setUser(userResponse);
           navigate("/home");
         });
 
       return responseApi;
     } catch (error) {
       toastError();
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -99,18 +99,44 @@ export const UserProvider = ({ children }) => {
       value={{
         login,
         user,
-        loading,
         setUser,
+        loading,
         setLoading,
-        updateTech,
-        setUpdateTech,
+        // techsList,
+        // setTechsList,
         postRegisterUser,
         toast,
         toastSuccess,
         toastError,
+        navigate,
       }}
     >
       {children}
     </UserContext.Provider>
   );
 };
+
+// localStorage.setItem("@TOKEN", JSON.stringify(response.data.token));
+
+// useEffect(() => {
+//   const userToken = localStorage.getItem("@TOKEN");
+
+//   if (userToken) {
+//     const loggedInUserProfile = async () => {
+//       try {
+//         api.defaults.headers.common.Authorization = `Bearer ${userToken}`;
+
+//         const response = await api.get("/profile");
+
+//         setUser(response.data);
+//         // setUpdateTech(response.data.techs);
+//       } catch (error) {
+//         localStorage.clear();
+//         toastError();
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+//     loggedInUserProfile();
+//   }
+// }, []);
