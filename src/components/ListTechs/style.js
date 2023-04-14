@@ -6,6 +6,10 @@ export const StyledContainerSectionTechs = styled.div`
   width: 90%;
   gap: 1rem;
   margin-top: 0.5rem;
+
+  @media (min-width: 768px) {
+    width: 60%;
+  }
 `;
 
 export const StyledContainerTitle = styled.span`
@@ -44,4 +48,6 @@ export const StyledContainerTechList = styled.ul`
   font-weight: 700;
   line-height: 1.5625rem;
   padding: 1.375rem 0.7rem;
+  cursor: pointer;
 `;
+

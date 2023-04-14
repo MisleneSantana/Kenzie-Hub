@@ -1,6 +1,5 @@
 import { Header } from "../../components/Header";
-import { Navigate, useNavigate } from "react-router-dom";
-// import { Loading } from "../../components/Loading";
+import { useNavigate } from "react-router-dom";
 import { StyledDashboardContainer } from "./style";
 import { StyledHeaderDashboardPageContainer } from "./style";
 import { StyledMainDashboardContainer } from "./style";
@@ -9,8 +8,8 @@ import { UserContext } from "../../providers/UserProvider";
 import { ListTechs } from "../../components/ListTechs";
 
 export const Dashboard = () => {
-  const { user, techList } = useContext(UserContext);
-  // console.log(user.techs)
+  const { user } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const clearLocalStorage = () => {
@@ -28,8 +27,8 @@ export const Dashboard = () => {
         </StyledHeaderDashboardPageContainer>
         <StyledMainDashboardContainer>
           <section>
-            {/* <p>Olá, {user.name[0].toUpperCase() + user.name.substring(1)}</p> */}
-            <p>Olá, {user.name}</p>
+            <p>Olá, {user.name[0].toUpperCase() + user.name.substring(1)}</p>
+            {/* <p>Olá, {user.name}</p> */}
             <p>{user.course_module}</p>
           </section>
           {user ? (
@@ -42,11 +41,3 @@ export const Dashboard = () => {
     </>
   );
 };
-
-/* <section>
-<p>Que pena, estamos em desenvolvimento :(</p>
-<p>
-  Nossa aplicação está em desenvolvimento, em breve teremos
-  novidades
-</p>
-</section> */

@@ -21,7 +21,7 @@ export const EditOrDeleteModal = ({ tech, setIsEditOrDeleteModalOpen }) => {
   const techId = tech.id;
 
   const modalEditOrDeleteSubmit = (formData) => {
-    // console.log(data);
+    // console.log(formData);
     handleUpdateTech(techId, formData);
   };
 
@@ -54,7 +54,13 @@ export const EditOrDeleteModal = ({ tech, setIsEditOrDeleteModalOpen }) => {
         </select>
         <div>
           <button type="submit">Salvar alterações</button>
-          <button onClick={() => handleDeleteTech(techId)}>Excluir</button>
+          <button
+            onClick={() => {
+              handleDeleteTech(techId), setIsEditOrDeleteModalOpen(false);
+            }}
+          >
+            Excluir
+          </button>
         </div>
       </form>
     </StyledModalPreviewTech>

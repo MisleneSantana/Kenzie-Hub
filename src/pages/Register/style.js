@@ -8,7 +8,7 @@ export const StyledRegisterPageContainer = styled.div`
   align-items: center;
   margin: 0 auto;
   gap: 1rem;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   overflow-x: hidden;
 `;
 
@@ -42,6 +42,11 @@ export const StyledHeaderRegisterPageContainer = styled.div`
 
       a {
         color: var(--grey-0);
+      }
+
+      hover:{
+        background-color: var(--grey-1);
+        border: 1px solid var(--grey-1);
       }
     }
   }

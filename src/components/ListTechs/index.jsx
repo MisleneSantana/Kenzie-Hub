@@ -1,6 +1,5 @@
 import { CardTech } from "./CardTech";
 import { useContext, useState } from "react";
-// import { UserContext } from "../../providers/UserProvider";
 import ButtonModal from "../../assets/img/Modal.svg";
 import { AddModal } from "../AddModal";
 import {

@@ -59,6 +59,12 @@ export const StyledRegisterForm = styled.form`
       font-size: 0.8125rem;
       font-weight: 400;
       padding: 1rem 1rem;
+
+      :focus{
+        border: 0.0762rem solid var(--grey-0);
+        color: var(--grey-0);
+        font-weight:400;
+      }
     }
   }
 

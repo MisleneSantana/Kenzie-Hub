@@ -1,5 +1,4 @@
-import { createContext, useEffect } from "react";
-import { useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
@@ -102,8 +101,6 @@ export const UserProvider = ({ children }) => {
         setUser,
         loading,
         setLoading,
-        // techsList,
-        // setTechsList,
         postRegisterUser,
         toast,
         toastSuccess,
@@ -116,27 +113,3 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-// localStorage.setItem("@TOKEN", JSON.stringify(response.data.token));
-
-// useEffect(() => {
-//   const userToken = localStorage.getItem("@TOKEN");
-
-//   if (userToken) {
-//     const loggedInUserProfile = async () => {
-//       try {
-//         api.defaults.headers.common.Authorization = `Bearer ${userToken}`;
-
-//         const response = await api.get("/profile");
-
-//         setUser(response.data);
-//         // setUpdateTech(response.data.techs);
-//       } catch (error) {
-//         localStorage.clear();
-//         toastError();
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-//     loggedInUserProfile();
-//   }
-// }, []);

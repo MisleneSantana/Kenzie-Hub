@@ -1,7 +1,6 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { UserContext } from "./UserProvider";
 import { api } from "../services/api";
-import { useState } from "react";
 
 export const TechContext = createContext({});
 
@@ -9,7 +8,6 @@ export const TechProvider = ({ children }) => {
   const { user, setLoading, toast, toastError } = useContext(UserContext);
 
   const [techList, setTechList] = useState(user.techs);
-  // console.log(techList);
 
   const toastSuccessCreate = () => {
     toast.success("Tecnologia criada", {
@@ -75,8 +73,8 @@ export const TechProvider = ({ children }) => {
       const response = await api.delete(`/users/techs/${techId}`);
 
       const removeCurrentTech = techList.filter((tech) => tech.id !== techId);
+
       setTechList(removeCurrentTech);
-      // console.log(response);
       toastSuccessDelete();
 
       return response;

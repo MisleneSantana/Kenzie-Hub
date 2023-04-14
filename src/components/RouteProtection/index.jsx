@@ -6,7 +6,7 @@ import { TechProvider } from "../../providers/TechProvider";
 
 export const RouteProtection = () => {
   const { user, loading } = useContext(UserContext);
-  // console.log(user);
+
   if (loading) {
     return <Loading />;
   }
@@ -21,10 +21,3 @@ export const RouteProtection = () => {
     </TechProvider>
   );
 };
-
-// if (user) {
-//   console.log(user);
-//   return <Outlet />;
-// }
-
-// return <Navigate to="/" />;

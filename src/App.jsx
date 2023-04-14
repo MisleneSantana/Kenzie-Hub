@@ -7,10 +7,6 @@ import { UserProvider } from "./providers/UserProvider";
 import { RoutesMain } from "./routes/index";
 
 function App() {
-  // const localStorageUserToken = localStorage.getItem("@TOKEN"); //Para uso futuro
-  // const localStorageUserId = localStorage.getItem("@USERID");  //Para uso futuro
-  // console.log(localStorageUserToken, localStorageUserId);
-
   return (
     <>
       <GlobalReset />

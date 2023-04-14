@@ -62,7 +62,7 @@ input{
     }
 }
 
-button, a{
+button, a, select, input{
     cursor: pointer;
 }
 `;

@@ -28,13 +28,18 @@ export const StyledLoginForm = styled.form`
     color: var(--white);
     font-weight: 500;
     margin-top: 0.5rem;
+
+    :hover{
+      background-color: var(--color-primary-focus);
+      border: 0.0762rem solid var(--color-primary-focus);
+    }
   }
 
   p {
-    margin-top: 1rem;
-    font-size: var(--text-12);
+    // margin-top: 1rem;
+    font-size: 0.6875rem;
     line-height: 1.125rem;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--grey-1);
   }
 
@@ -52,6 +57,11 @@ export const StyledLoginForm = styled.form`
     font-weight: 500;
     line-height: 1.625rem;
     color: var(--grey-0);
+
+    :hover {
+      background-color: var(--grey-2);
+      border: 1px solid var(--grey-2);
+    }
   }
 
   @media (min-width: 768px) {

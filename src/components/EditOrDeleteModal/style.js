@@ -9,10 +9,13 @@ export const StyledModalPreviewTech = styled.div`
   border-radius: var(--border-radius);
   width: 90%;
   position: fixed;
-  // top: 150px;
   margin: auto;
   inset: 0;
   height: 290px;
+  z-index:1000;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+  rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+  rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
   span {
     width: 100%;
@@ -54,6 +57,7 @@ export const StyledModalPreviewTech = styled.div`
 
       input {
         height: 2.3981rem;
+        cursor: not-allowed;
       }
     }
 
@@ -71,6 +75,7 @@ export const StyledModalPreviewTech = styled.div`
         color: var(--grey-1);
         padding: 0px 1rem;
         margin-bottom: 1.5rem;
+        cursor: pointer;
   
         :focus {
           border: 0.0762rem solid var(--grey-0);
@@ -94,6 +99,11 @@ export const StyledModalPreviewTech = styled.div`
         font-size: 0.8125rem;
         font-weight: 500;
         color: var(--white);
+
+        :hover{
+          background-color: var(--color-primary-focus);
+          border: 2px solid var(--color-primary-focus);
+        }
       }
 
       button:nth-of-type(2) {
@@ -105,6 +115,11 @@ export const StyledModalPreviewTech = styled.div`
         font-size: 0.8125rem;
         font-weight: 500;
         color: var(--white);
+
+        :hover{
+          background-color: var(--grey-4);
+          border: 2px solid var(--grey-4);
+        }
       }
     }
   }
@@ -113,6 +128,5 @@ export const StyledModalPreviewTech = styled.div`
     width:23.0625rem;
     inset: 0;
     height: 290px;
-    z-index:0;
   }
 `;
