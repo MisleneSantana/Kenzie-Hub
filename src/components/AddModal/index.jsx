@@ -49,7 +49,9 @@ export const AddModal = ({ setIsAddModalOpen }) => {
           <Option value="Intermediário" text={"Intermediário"} />
           <Option value="Avançado" text={"Avançado"} />
         </select>
-        <button type="submit" className="closeModal">Cadastrar Tecnologia</button>
+        <button type="submit" className="closeModal">
+          Cadastrar Tecnologia
+        </button>
       </form>
     </StyledInputContainer>
   );

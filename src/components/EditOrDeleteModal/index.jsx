@@ -23,6 +23,7 @@ export const EditOrDeleteModal = ({ tech, setIsEditOrDeleteModalOpen }) => {
   const modalEditOrDeleteSubmit = (formData) => {
     // console.log(formData);
     handleUpdateTech(techId, formData);
+    setIsEditOrDeleteModalOpen(false);
   };
 
   return (
