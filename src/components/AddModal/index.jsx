@@ -19,6 +19,11 @@ export const AddModal = ({ setIsAddModalOpen }) => {
 
   const { handleNewTechnology } = useContext(TechContext);
 
+  const submitFormCreateNeTech = (formData) => {
+    handleNewTechnology(formData);
+    setIsAddModalOpen(false);
+  };
+
   return (
     <StyledInputContainer role="dialog">
       <span>
@@ -27,7 +32,7 @@ export const AddModal = ({ setIsAddModalOpen }) => {
           <img src={buttonClose} alt="X" />
         </button>
       </span>
-      <form onSubmit={handleSubmit(handleNewTechnology)}>
+      <form onSubmit={handleSubmit(submitFormCreateNeTech)}>
         <Input
           type="text"
           label="Nome"
