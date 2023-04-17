@@ -28,7 +28,6 @@ export const Dashboard = () => {
         <StyledMainDashboardContainer>
           <section>
             <p>Olá, {user.name[0].toUpperCase() + user.name.substring(1)}</p>
-            {/* <p>Olá, {user.name}</p> */}
             <p>{user.course_module}</p>
           </section>
           {user ? (

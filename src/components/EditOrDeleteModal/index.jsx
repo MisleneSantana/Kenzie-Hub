@@ -21,7 +21,6 @@ export const EditOrDeleteModal = ({ tech, setIsEditOrDeleteModalOpen }) => {
   const techId = tech.id;
 
   const modalEditOrDeleteSubmit = (formData) => {
-    // console.log(formData);
     handleUpdateTech(techId, formData);
     setIsEditOrDeleteModalOpen(false);
   };
