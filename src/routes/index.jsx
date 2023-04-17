@@ -4,15 +4,19 @@ import { Register } from "../pages/Register";
 import { Dashboard } from "../pages/Dashboard";
 import { NotFound } from "../pages/NotFound";
 import { RouteProtection } from "../../src/components/RouteProtection";
+import { PublicRoutes } from "../components/PublicRoutes";
 
 export const RoutesMain = ({ toast }) => {
   return (
     <Routes>
-      <Route path="/" element={<Login />}></Route>
-      <Route path="/register" element={<Register toast={toast} />} />
+      <Route element={<PublicRoutes />}>
+        {/* Outlet PublicRoutes: */}
+        <Route path="/" element={<Login />}></Route>
+        <Route path="/register" element={<Register toast={toast} />} />
+      </Route>
 
       <Route element={<RouteProtection />}>
-        {/* Outlet: */}
+        {/* Outlet RouteProtection: */}
         <Route path="/home" element={<Dashboard />}></Route>
       </Route>
 

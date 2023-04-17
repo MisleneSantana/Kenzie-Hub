@@ -13,10 +13,11 @@ export const StyledModalPreviewTech = styled.div`
   inset: 0;
   height: 290px;
   z-index:1000;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-  rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-  rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  // box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  // box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+  // rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+  // rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  // box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 
   span {
     width: 100%;
